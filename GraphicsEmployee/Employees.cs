@@ -28,6 +28,11 @@ namespace GraphicsEmployee
 
         [JsonProperty("position")]
         public string Position { get; set; }
+
+        override public string ToString()
+        {
+            return Name;
+        }
     }
 
     public partial class Employees
