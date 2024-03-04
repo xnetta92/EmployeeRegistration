@@ -64,6 +64,7 @@
             this.button_new.TabIndex = 1;
             this.button_new.Text = "New";
             this.button_new.UseVisualStyleBackColor = true;
+            this.button_new.Click += new System.EventHandler(this.button_new_Click);
             // 
             // groupBox_employe
             // 
@@ -166,6 +167,7 @@
             this.button_read.TabIndex = 1;
             this.button_read.Text = "Read";
             this.button_read.UseVisualStyleBackColor = true;
+            this.button_read.Click += new System.EventHandler(this.button_read_Click);
             // 
             // button_edit
             // 
@@ -184,6 +186,7 @@
             this.button_delete.TabIndex = 1;
             this.button_delete.Text = "Delete";
             this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // Form1
             // 
