@@ -150,5 +150,49 @@ namespace GraphicsEmployee
 
             }
         }
+
+        private void button_edit_Click(object sender, EventArgs e)
+        {
+            
+            if (string.IsNullOrEmpty(textBox_id.Text))
+            {
+                MessageBox.Show("You have not selected an employee!");
+                return;
+            }
+            if (textBox_name.Text.Length < 3)
+            {
+                MessageBox.Show("Entering a name is mandatory!");
+                textBox_name.Focus();
+                return;
+            }
+            
+
+            Employees employees = new Employees();
+
+            employees.Id = long.Parse(textBox_id.Text);
+            employees.Name = textBox_name.Text;
+            employees.Salary = (long)numericUpDown_salary.Value;
+            employees.Position = textBox_position.Text;
+
+            var json = JsonConvert.SerializeObject(employees); 
+            var data = new StringContent(json, Encoding.UTF8, "application/json"); 
+            string endPointUpdate = $"{endPoint}/{employees.Id}";
+            var response = client.PutAsync(endPointUpdate, data).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Successful editing!");
+                updatelist();
+            }
+            else
+            {
+                MessageBox.Show("Editing failed!");
+            }
+            //-- delete input fields ---------------
+            textBox_id.Text = string.Empty;
+            textBox_name.Text = string.Empty;
+            numericUpDown_salary.Value = numericUpDown_salary.Minimum;
+            textBox_position.Text = string.Empty;
+         
+        }
     }
 }
